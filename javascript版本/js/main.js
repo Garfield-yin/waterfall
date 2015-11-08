@@ -12,9 +12,9 @@ function waterfall(){
 	
 	for(var i=0;i<loadData.length;i++){
 		var children = getElementsByClassName("child");
-		//获取高度最小的li
+		//获取高度最小的对象
 		//console.log(aLi[2].offsetHeight)
-		var _index = getShortLi(children);
+		var _index = getShort(children);
 		//console.log(_index);
 		var oDiv = document.createElement('div');
 		var oImg = document.createElement('img');
@@ -37,7 +37,7 @@ waterfall();
  * 获取高度最小的child
  * @return {[type]} [description]
  */
-function getShortLi(obj){
+function getShort(obj){
 	//console.log(obj);
 	var index = 0;
 	var min = obj[index].offsetHeight;
@@ -61,11 +61,10 @@ function getShortLi(obj){
  */
 window.onscroll = function(){
 	var children = getElementsByClassName("child");
-	var _index = getShortLi(children);
-	var oLi = children[_index];
-
+	var _index = getShort(children);
+	var minHeightChild = children[_index];
 	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-	if(getTop(oLi)+oLi.offsetHeight < scrollTop + document.documentElement.clientHeight){
+	if(getTop(minHeightChild)+minHeightChild.offsetHeight < scrollTop + document.documentElement.clientHeight){
 		if(b){
 			//为了模拟后台数据加载使用了延时，其实是没有必要的。
 			setTimeout(function(){
